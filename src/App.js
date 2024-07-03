@@ -7,7 +7,7 @@ import { Index as Son } from './components/index';
 import { Edit } from './components/edit';
 import axios from 'axios';
 import { useSelector,useDispatch } from 'react-redux';
-import { inscrement,decrement } from './store/modules/redstore';
+import { inscrement,decrement,add10 } from './store/modules/redstore';
 
 // 点击事件
 function ass(){
@@ -125,6 +125,7 @@ function App() {
       <button onClick={()=>{dispatch(decrement())}}>+</button>
       <div>{count2}</div>
       <button onClick={()=>{dispatch(inscrement())}}>-</button>
+      <button onClick={()=>{dispatch(add10(10))}}>10+</button>
       <div>/////////</div>
       <Edit></Edit>
       <Son name='11' add={add1}>
