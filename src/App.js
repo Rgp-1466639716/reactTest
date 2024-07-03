@@ -8,7 +8,7 @@ import { Edit } from './components/edit';
 import axios from 'axios';
 import { useSelector,useDispatch } from 'react-redux';
 import { inscrement,decrement,add10 } from './store/modules/redstore';
-
+import { fetchChannlList } from './store/modules/addstore';
 // 点击事件
 function ass(){
   return '222'
@@ -25,7 +25,6 @@ function sss(x,e){
       addd = 2222
       break;
   }
-  console.log(e)
   console.log(addd)
 }
 const ac = 122
@@ -48,7 +47,6 @@ const useCss = (adurl)=>{
     const ax = async()=>{
       const res = await axios.get(adurl)
       setList1(res.data)
-      console.log(1232321,res.data)
     } 
     ax()
   },[])
@@ -56,6 +54,7 @@ const useCss = (adurl)=>{
 }
 function App() {
   const { count:count2 } = useSelector(state=>state.counter)
+  const { changeList=[] } = useSelector(state=>state.channel)
   const dispatch = useDispatch()
   const useRefInput = useRef(null)
   const {list1,setList1} = useCss('http://localhost:3004/icons')
@@ -63,7 +62,6 @@ function App() {
   const [ count1 ,setCount1 ] = useState({name:'rui'})
   // 惰性传usestate初始数据
   const orderByList = () =>{
-    console.log(12321312321)
     return _.orderBy([
       {id:1, a:"11啊哈哈", number:1},
       {id:2, a:"11啊哈哈", my:true,number:5},
@@ -87,8 +85,6 @@ function App() {
   }
   const del1 = (id)=>{
     const lisnew = lis.filter(item=>item.id !== id)
-    // const lisnew = lis.splice(id-1,1)
-    // console.log(1111,lisnew,lis)
     setLis(lisnew)
   }
   // tab切换 数据   改变颜色和数据
@@ -101,7 +97,6 @@ function App() {
     
       default:
         lisn =_.orderBy(lis,'number','desc')
-        console.log(_,212323,lisn)
         break;
     }
     setShow(type)
@@ -117,10 +112,14 @@ function App() {
     console.log(dayjs(new Date()).format('YYYY-MM'))
   }
   const add1 = (aa)=>{
-    console.log(123232,aa)
+    console.log('add',aa)
   }
+  useEffect(()=>{
+    dispatch(fetchChannlList())
+  },[dispatch])
   return (
     <div className="App">
+      {changeList.map(item=><div key={item.id}>{item.id}</div>)}
       {/* redux */}
       <button onClick={()=>{dispatch(decrement())}}>+</button>
       <div>{count2}</div>
