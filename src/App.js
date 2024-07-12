@@ -49,7 +49,7 @@ const useCss = (adurl)=>{
       setList1(res.data)
     } 
     ax()
-  },[])
+  },[adurl])
   return {list1,setList1}
 }
 function App() {
@@ -57,7 +57,7 @@ function App() {
   const { changeList=[] } = useSelector(state=>state.channel)
   const dispatch = useDispatch()
   const useRefInput = useRef(null)
-  const {list1,setList1} = useCss('http://localhost:3004/icons')
+  useCss('http://localhost:3004/icons')
   const [ count ,setCount ] = useState(0)
   const [ count1 ,setCount1 ] = useState({name:'rui'})
   // 惰性传usestate初始数据
@@ -125,7 +125,7 @@ function App() {
       <div>{count2}</div>
       <button onClick={()=>{dispatch(inscrement())}}>-</button>
       <button onClick={()=>{dispatch(add10(10))}}>10+</button>
-      <div>/////////</div>
+      <div>22/王/</div>
       <Edit></Edit>
       <Son name='11' add={add1}>
         哈哈
