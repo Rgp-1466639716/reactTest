@@ -1,8 +1,7 @@
-import Login from '../page/Login/index'
-import Articl from '../page/Articl/index'
+import Year from '@/page/Year'
+import Month from '@/page/Month'
+import New from '@/page/New'
 import Layout from '../page/Layout'
-import About from '../page/Layout/About'
-import Asolo from '../page/Layout/Asolo'
 import {createBrowserRouter} from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -14,22 +13,17 @@ const router = createBrowserRouter([
       // 设置默认二级路由
       {
         index:true,
-        element:<About/>
+        element:<Month/>
       },
       {
-        path:'/Asolo',
-        element:<Asolo/>
+        path:'/Year',
+        element:<Year/>
       }
     ]
   },
   {
-    path:'/Login',
-    element:<Login/>
-  },
-  {
-    // path:'/Articl', //searchParams传参
-    path:'/Articl/:name/:id', //params传参
-    element:<Articl/>
+    path:'/New',
+    element:<New/>
   },
   // 匹配不到路由了，匹配到这里
   {
