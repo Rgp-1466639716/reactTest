@@ -20,6 +20,13 @@
     "date":"2022-10-25 10:36:42",
     "usefor":"drinks",
     "id":3
+  },
+  {
+    "type":"income",
+    "money":1020,
+    "date":"2022-10-25 10:36:42",
+    "usefor":"drinks",
+    "id":4
   }
  ]
 }
