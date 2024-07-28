@@ -39,6 +39,22 @@ class Son extends Component {
   componentDidMount(){
     // 组件挂载完毕时自动执行,执行副作用，调后端接口等
     console.log(111,'conponentDidMount')
+    // 管道函数 函数返回的值 当行参 传递给下一个函数
+    function pipeFun (...aru){
+      return function(x){
+        return aru.reduce((pre,item)=>{
+          return item(pre)
+        },x)
+      }
+    }
+    function f1 (x){
+      return x+1
+    }
+    function f2 (y){
+      return y+2
+    }
+    const pipe = pipeFun (f1,f2)
+    pipe(5)
   }
   componentWillUnmount(){
     // 组件卸载时执行，清除定时器，副作用等
