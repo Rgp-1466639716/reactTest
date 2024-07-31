@@ -10,7 +10,29 @@ class Son extends Component {
       count: 0
     }
   }
+  inc = (x)=>{
+    return x + 2
+  }
+  red = (x)=>{
+    return x - 1
+  }
   setCount = ()=>{
+    const that = this
+    function chain(value){
+      const handler = {
+        get: function(obj, prop) {
+          if( typeof that[prop] === 'function' ){
+            obj.value = that[prop](obj.value)
+            return proxy
+          }
+          return obj[prop]
+        }
+      }
+      const proxy = new Proxy({ value }, handler)
+      return proxy
+    }
+    const aa = chain(3).inc.red
+    console.log(11111,aa)
     this.setState({
       count:1
     })
